@@ -1,22 +1,26 @@
 <template>
   <div>
-    <m-head></m-head>
-    <aside></aside>
+    <div class="head">
+      <m-aside></m-aside>
+      <m-head></m-head>
+    </div>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import MHead from 'components/m-head/m-head'
-import Aside from 'components/aside/aside'
+import MAside from 'components/m-aside/m-aside'
 
 export default {
   components: {
     MHead,
-    Aside
+    MAside
   }
 }
 </script>
 
-<style>
+<style scoped lang="stylus" rel="stylesheet/stylus">
+  .head
+    display flex
 </style>
