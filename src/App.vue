@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div style="height:100%">
+    <m-head></m-head>
     <div class="head">
       <m-aside></m-aside>
-      <m-head></m-head>
+      <router-view></router-view>
     </div>
-    <router-view></router-view>
   </div>
 </template>
 
@@ -22,5 +22,6 @@ export default {
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .head
+    height 93%
     display flex
 </style>

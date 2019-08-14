@@ -1,5 +1,5 @@
 <template>
- <div>
+ <div class="m-aside">
    <!-- <el-row class="tac"> -->
     <!-- <el-col :span="3"> -->
       <el-menu
@@ -67,4 +67,9 @@ export default {
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+  .m-aside
+    height 100%
+    background-color #545c64
+    .el-menu
+      border-right 0
 </style>

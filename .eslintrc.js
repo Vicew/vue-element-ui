@@ -31,6 +31,7 @@ module.exports = {
     'semi': ["error", "never"],
     'space-infix-ops': "error",
     'before': true,
+    'key-spacing': ["error", { "beforeColon": false, "afterColon": true }],
     'space-infix-ops': "error"
     // 'indent':["off",2]
   }
