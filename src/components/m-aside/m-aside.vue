@@ -68,6 +68,7 @@ export default {
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .m-aside
+    width 240px
     height 100%
     background-color #545c64
     .el-menu

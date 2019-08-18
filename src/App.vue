@@ -1,7 +1,7 @@
 <template>
   <div style="height:100%">
     <m-head></m-head>
-    <div class="head">
+    <div class="aside-content">
       <m-aside></m-aside>
       <router-view></router-view>
     </div>
@@ -21,7 +21,9 @@ export default {
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  .head
-    height 93%
+  .aside-content
+    background-color #eee
+    height 872px
+    min-width 1200px
     display flex
 </style>
