@@ -1,5 +1,5 @@
 <template>
-  <div style="height:100%">
+  <div>
     <m-head></m-head>
     <div class="aside-content">
       <m-aside></m-aside>
@@ -22,8 +22,6 @@ export default {
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .aside-content
-    background-color #eee
-    height 872px
     min-width 1200px
     display flex
 </style>

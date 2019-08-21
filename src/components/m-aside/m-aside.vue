@@ -1,5 +1,8 @@
 <template>
  <div class="m-aside">
+   <div class="aside-logo">
+     <a href="#">LOGO</a>
+   </div>
    <!-- <el-row class="tac"> -->
     <!-- <el-col :span="3"> -->
       <el-menu
@@ -68,9 +71,32 @@ export default {
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .m-aside
+    position fixed
     width 240px
     height 100%
+    z-index 1000
     background-color #545c64
+    .aside-logo
+      display flex
+      align-items center
+      justify-content center
+      height 62px
+      box-shadow 0 1px 4px rgba(0,21,41,.5)
+      a
+        display block
+        max-width 180px
+        overflow hidden
+        color #fff
+        font-weight 700
+        font-size 28px
+        white-space nowrap
+        text-decoration none
+        text-overflow ellipsis
+        &:hover
+          color red
+  .m-aside >>> .el-menu-vertical-demo
+    padding-top 18px
+    border-right 0
     .el-menu
       border-right 0
 </style>

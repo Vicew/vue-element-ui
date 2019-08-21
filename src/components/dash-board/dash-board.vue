@@ -126,7 +126,135 @@
       </div>
     </div>
     <div class="container-block">
-      <div class="container-block-locate"></div>
+      <div class="container-block-locate">
+        <div class="content">
+          <h4>最近邀评数据</h4>
+            <el-table
+              :data="tableData"
+              style="width: 100%">
+              <el-table-column
+                label="被邀请人"
+                width="330">
+                <template slot-scope="scope">
+                  <i :class="scope.row.beInvitedIcon"></i>
+                  <span style="margin-left: 10px">{{ scope.row.beInvited }}</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                label="被邀请人邮件"
+                width="367">
+                <template slot-scope="scope">
+                  <span>{{ scope.row.email }}</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                label="邀请人"
+                width="294">
+                <template slot-scope="scope">
+                  <i :class="scope.row.inviterIcon"></i>
+                  <span>{{ scope.row.inviter }}</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                label="邀请时间"
+                width="294">
+                <template slot-scope="scope">
+                  <span>{{ scope.row.date }}</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                label="状态"
+                width="284">
+                <template slot-scope="scope">
+                  <el-button :type="scope.row.type">已发送</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          <!-- <table>
+            <thead class="table-header">
+              <tr>
+                <th><div class="table-cell">被邀请人</div></th>
+                <th><div class="table-cell">被邀请人邮件</div></th>
+                <th><div class="table-cell">邀请人</div></th>
+                <th><div class="table-cell">邀请时间</div></th>
+                <th><div class="table-cell">状态</div></th>
+              </tr>
+            </thead>
+            <tbody class="table-body">
+              <tr>
+                <td>
+                  <div class="cell-wrapper">
+                    <div class="cell-review">
+                      <i class="iconfont iconavatar1"></i>
+                      <span class="item-name">李经理</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-wrapper">
+                    hi@example.com
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-wrapper">
+                    <div class="cell-review">
+                      <i class="iconfont iconavatar1"></i>
+                      <span class="item-name">王总</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-wrapper">
+                      2018年3月12日
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-wrapper">
+                    <el-button type="primary">已发送</el-button>
+                  </div>
+                </td>
+              </tr>
+              <tr v-for="index in Array(6)" :key="index">
+                <td>
+                  <div class="cell-wrapper">
+                    <div class="cell-review">
+                      <i class="iconfont iconavatar1"></i>
+                      <span class="item-name">李经理</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-wrapper">
+                    hi@example.com
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-wrapper">
+                    <div class="cell-review">
+                      <i class="iconfont iconavatar1"></i>
+                      <span class="item-name">王总</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-wrapper">
+                      2018年3月12日
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-wrapper">
+                    <el-button type="warning">等待接受</el-button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table> -->
+        </div>
+      </div>
+    </div>
+    <div class="chart-block">
+      <div class="chart-block-locate">
+      </div>
     </div>
   </div>
 </template>
@@ -135,7 +263,64 @@
 export default {
   data() {
     return {
-      value: 4.5
+      value: 4.5,
+      tableData: [{
+        date: '2018年3月12日',
+        beInvited: '李经理',
+        inviter: '王总',
+        beInvitedIcon: 'iconfont iconavatar1',
+        inviterIcon: 'iconfont iconavatar2',
+        email: 'hi@example.com',
+        type: 'primary'
+      }, {
+        date: '2018年3月12日',
+        beInvited: '许经理',
+        inviter: '罗总',
+        beInvitedIcon: 'iconfont iconavatar1',
+        inviterIcon: 'iconfont iconavatar2',
+        email: 'hi@example.com',
+        type: 'danger'
+      }, {
+        date: '2018年3月12日',
+        beInvited: '王经理',
+        inviter: '潘总',
+        beInvitedIcon: 'iconfont iconavatar1',
+        inviterIcon: 'iconfont iconavatar2',
+        email: 'hi@example.com',
+        type: 'warning'
+      }, {
+        date: '2018年3月12日',
+        beInvited: '张经理',
+        inviter: '王总',
+        beInvitedIcon: 'iconfont iconavatar1',
+        inviterIcon: 'iconfont iconavatar2',
+        email: 'hi@example.com',
+        type: 'info'
+      }, {
+        date: '2018年3月12日',
+        beInvited: '张经理',
+        inviter: '王总',
+        beInvitedIcon: 'iconfont iconavatar1',
+        inviterIcon: 'iconfont iconavatar2',
+        email: 'hi@example.com',
+        type: 'info'
+      }, {
+        date: '2018年3月12日',
+        beInvited: '张经理',
+        inviter: '王总',
+        beInvitedIcon: 'iconfont iconavatar1',
+        inviterIcon: 'iconfont iconavatar2',
+        email: 'hi@example.com',
+        type: 'info'
+      }, {
+        date: '2018年3月12日',
+        beInvited: '张经理',
+        inviter: '王总',
+        beInvitedIcon: 'iconfont iconavatar1',
+        inviterIcon: 'iconfont iconavatar2',
+        email: 'hi@example.com',
+        type: 'info'
+      }]
     }
   }
 }
@@ -143,7 +328,10 @@ export default {
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .dash-board
+    background-color #eee
     width 100%
+    margin-top 65px
+    margin-left 240px
     .evaluation-grade
       width 100%
       height 285px
@@ -306,12 +494,87 @@ export default {
     .container-block
       width 100%
       display flex
-      height 130px
+      height 605px
       align-items center
       justify-content center
       .container-block-locate
         background-color white
         border-radius 6px
         width 97.3%
-        height 100px
+        height 575px
+        .content
+          padding 20px
+          margin-bottom 20px
+          h4
+            height 16px
+            line-height 16px
+            font-size 16px
+            color rgb(51, 51, 51)
+            font-weight bold
+            margin 0px 0px 20px
+            padding 0px
+        .content >>> .is-leaf
+          background-color #ebecf0
+        .content >>> .el-table::before
+          width 1569px
+        .content >>> .iconavatar1:before
+          font-size 30px
+        .content >>> .iconavatar2:before
+          font-size 30px
+    //       table
+    //         border-collapse collapse
+    //         border-spacing 0
+    //         width 100%
+    //         background #fff
+    //         .table-header
+    //           overflow auto
+    //           font-size 14px
+    //           th
+    //             padding 0
+    //             background #ebecf0
+    //             color #333
+    //             text-align left
+    //             font-weight 400
+    //             border-bottom 1px solid #dcdee3
+    //             .table-cell
+    //               padding 12px 16px
+    //               overflow hidden
+    //               text-overflow ellipsis
+    //               word-break break-all
+    //         .table-body
+    //           font-size 14px
+    //           td
+    //             padding 0
+    //             border-bottom 1px solid #dcdee3
+    //             .cell-wrapper
+    //               padding 12px 16px
+    //               overflow hidden
+    //               text-overflow ellipsis
+    //               word-break break-all
+    //             .cell-wrapper >>> .el-button--primary
+    //                 width 76px
+    //                 height 29px
+    //             .cell-wrapper >>> .el-button--warning
+    //                 width 76px
+    //                 height 29px
+    //             .cell-wrapper >>> .el-button
+    //                 padding 6px !important
+    //                 font-size 13px
+    //               .cell-review
+    //                 display flex
+    //                 align-items center
+    //                 .iconavatar1
+    //                   font-size 30px
+    //                   margin-right 10px
+    .chart-block
+      width 100%
+      display flex
+      height 486px
+      align-items center
+      justify-content center
+      .chart-block-locate
+        background-color white
+        border-radius 6px
+        width 97.3%
+        height 456px
 </style>
