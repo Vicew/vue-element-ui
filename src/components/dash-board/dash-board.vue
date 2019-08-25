@@ -170,158 +170,89 @@
                 </template>
               </el-table-column>
             </el-table>
-          <!-- <table>
-            <thead class="table-header">
-              <tr>
-                <th><div class="table-cell">被邀请人</div></th>
-                <th><div class="table-cell">被邀请人邮件</div></th>
-                <th><div class="table-cell">邀请人</div></th>
-                <th><div class="table-cell">邀请时间</div></th>
-                <th><div class="table-cell">状态</div></th>
-              </tr>
-            </thead>
-            <tbody class="table-body">
-              <tr>
-                <td>
-                  <div class="cell-wrapper">
-                    <div class="cell-review">
-                      <i class="iconfont iconavatar1"></i>
-                      <span class="item-name">李经理</span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="cell-wrapper">
-                    hi@example.com
-                  </div>
-                </td>
-                <td>
-                  <div class="cell-wrapper">
-                    <div class="cell-review">
-                      <i class="iconfont iconavatar1"></i>
-                      <span class="item-name">王总</span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="cell-wrapper">
-                      2018年3月12日
-                  </div>
-                </td>
-                <td>
-                  <div class="cell-wrapper">
-                    <el-button type="primary">已发送</el-button>
-                  </div>
-                </td>
-              </tr>
-              <tr v-for="index in Array(6)" :key="index">
-                <td>
-                  <div class="cell-wrapper">
-                    <div class="cell-review">
-                      <i class="iconfont iconavatar1"></i>
-                      <span class="item-name">李经理</span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="cell-wrapper">
-                    hi@example.com
-                  </div>
-                </td>
-                <td>
-                  <div class="cell-wrapper">
-                    <div class="cell-review">
-                      <i class="iconfont iconavatar1"></i>
-                      <span class="item-name">王总</span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="cell-wrapper">
-                      2018年3月12日
-                  </div>
-                </td>
-                <td>
-                  <div class="cell-wrapper">
-                    <el-button type="warning">等待接受</el-button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table> -->
         </div>
       </div>
     </div>
     <div class="chart-block">
       <div class="chart-block-locate">
+        <div class="content">
+          <h4>图表数据</h4>
+          <highcharts :defOptions="options" :styles="sty"></highcharts>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+import Highcharts from 'base/highcharts/highcharts'
+
 export default {
   data() {
     return {
       value: 4.5,
-      tableData: [{
-        date: '2018年3月12日',
-        beInvited: '李经理',
-        inviter: '王总',
-        beInvitedIcon: 'iconfont iconavatar1',
-        inviterIcon: 'iconfont iconavatar2',
-        email: 'hi@example.com',
-        type: 'primary'
-      }, {
-        date: '2018年3月12日',
-        beInvited: '许经理',
-        inviter: '罗总',
-        beInvitedIcon: 'iconfont iconavatar1',
-        inviterIcon: 'iconfont iconavatar2',
-        email: 'hi@example.com',
-        type: 'danger'
-      }, {
-        date: '2018年3月12日',
-        beInvited: '王经理',
-        inviter: '潘总',
-        beInvitedIcon: 'iconfont iconavatar1',
-        inviterIcon: 'iconfont iconavatar2',
-        email: 'hi@example.com',
-        type: 'warning'
-      }, {
-        date: '2018年3月12日',
-        beInvited: '张经理',
-        inviter: '王总',
-        beInvitedIcon: 'iconfont iconavatar1',
-        inviterIcon: 'iconfont iconavatar2',
-        email: 'hi@example.com',
-        type: 'info'
-      }, {
-        date: '2018年3月12日',
-        beInvited: '张经理',
-        inviter: '王总',
-        beInvitedIcon: 'iconfont iconavatar1',
-        inviterIcon: 'iconfont iconavatar2',
-        email: 'hi@example.com',
-        type: 'info'
-      }, {
-        date: '2018年3月12日',
-        beInvited: '张经理',
-        inviter: '王总',
-        beInvitedIcon: 'iconfont iconavatar1',
-        inviterIcon: 'iconfont iconavatar2',
-        email: 'hi@example.com',
-        type: 'info'
-      }, {
-        date: '2018年3月12日',
-        beInvited: '张经理',
-        inviter: '王总',
-        beInvitedIcon: 'iconfont iconavatar1',
-        inviterIcon: 'iconfont iconavatar2',
-        email: 'hi@example.com',
-        type: 'info'
-      }]
+      tableData: [],
+      sty: {
+        width: 1600,
+        height: 350
+      },
+      options: {
+        title: {
+          text: '按时间汇总',
+          x: -20 // center
+        },
+        chart: {
+          type: 'column'
+        },
+        xAxis: {
+          categories: ['00:00~01:00', '01:00~02:00', '02:00~03:00', '03:00~04:00', '04:00~05:00', '05:00~06:00',
+            '06:00~07:00', '07:00~08:00', '08:00~09:00', '09:00~10:00', '10:00~11:00',
+            '11:00~12:00', '12:00~13:00', '13:00~14:00', '14:00~15:00', '15:00~16:00',
+            '16:00~17:00', '17:00~18:00', '18:00~19:00', '19:00~20:00', '20:00~21:00',
+            '21:00~22:00', '22:00~23:00', '23:00~24:00'
+          ]
+        },
+        yAxis: {
+          title: {
+            text: '过车统计'
+          },
+          // 标示线
+          plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+          }]
+        },
+        tooltip: {
+          valueSuffix: '辆' // 提示信息所带单位
+        },
+        legend: {
+          enabled: false //  禁用图例
+        },
+        credits: {
+          enabled: false // 禁用版权信息
+        },
+        series: [{
+          name: '过车数量',
+          data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,
+            7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+        }]
+      }
     }
+  },
+  created() {
+    this._getTableData()
+  },
+  methods: {
+    _getTableData() {
+      axios.post('https://www.easy-mock.com/mock/5d5e38b76d7b847d9d307392/example/upload').then((res) => {
+        this.tableData = res.data.data
+      })
+    }
+  },
+  components: {
+    Highcharts
   }
 }
 </script>
@@ -521,51 +452,6 @@ export default {
           font-size 30px
         .content >>> .iconavatar2:before
           font-size 30px
-    //       table
-    //         border-collapse collapse
-    //         border-spacing 0
-    //         width 100%
-    //         background #fff
-    //         .table-header
-    //           overflow auto
-    //           font-size 14px
-    //           th
-    //             padding 0
-    //             background #ebecf0
-    //             color #333
-    //             text-align left
-    //             font-weight 400
-    //             border-bottom 1px solid #dcdee3
-    //             .table-cell
-    //               padding 12px 16px
-    //               overflow hidden
-    //               text-overflow ellipsis
-    //               word-break break-all
-    //         .table-body
-    //           font-size 14px
-    //           td
-    //             padding 0
-    //             border-bottom 1px solid #dcdee3
-    //             .cell-wrapper
-    //               padding 12px 16px
-    //               overflow hidden
-    //               text-overflow ellipsis
-    //               word-break break-all
-    //             .cell-wrapper >>> .el-button--primary
-    //                 width 76px
-    //                 height 29px
-    //             .cell-wrapper >>> .el-button--warning
-    //                 width 76px
-    //                 height 29px
-    //             .cell-wrapper >>> .el-button
-    //                 padding 6px !important
-    //                 font-size 13px
-    //               .cell-review
-    //                 display flex
-    //                 align-items center
-    //                 .iconavatar1
-    //                   font-size 30px
-    //                   margin-right 10px
     .chart-block
       width 100%
       display flex
@@ -577,4 +463,15 @@ export default {
         border-radius 6px
         width 97.3%
         height 456px
+        .content
+          padding 20px
+          margin-bottom 20px
+          h4
+            height 16px
+            line-height 16px
+            font-size 16px
+            color rgb(51, 51, 51)
+            font-weight bold
+            margin 0px 0px 20px
+            padding 0px
 </style>
