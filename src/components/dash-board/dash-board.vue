@@ -177,7 +177,7 @@
       <div class="chart-block-locate">
         <div class="content">
           <h4>图表数据</h4>
-          <highcharts :defOptions="options" :styles="sty"></highcharts>
+          <highcharts :defOptions="options" :styles="styles"></highcharts>
         </div>
       </div>
     </div>
@@ -188,57 +188,61 @@
 import axios from 'axios'
 import Highcharts from 'base/highcharts/highcharts'
 
+const style = {
+  width: 1600,
+  height: 350
+}
+
+const option = {
+  title: {
+    text: '按时间汇总',
+    x: -20 // center
+  },
+  chart: {
+    type: 'column'
+  },
+  xAxis: {
+    categories: ['00:00~01:00', '01:00~02:00', '02:00~03:00', '03:00~04:00', '04:00~05:00', '05:00~06:00',
+      '06:00~07:00', '07:00~08:00', '08:00~09:00', '09:00~10:00', '10:00~11:00',
+      '11:00~12:00', '12:00~13:00', '13:00~14:00', '14:00~15:00', '15:00~16:00',
+      '16:00~17:00', '17:00~18:00', '18:00~19:00', '19:00~20:00', '20:00~21:00',
+      '21:00~22:00', '22:00~23:00', '23:00~24:00'
+    ]
+  },
+  yAxis: {
+    title: {
+      text: '过车统计'
+    },
+    // 标示线
+    plotLines: [{
+      value: 0,
+      width: 1,
+      color: '#808080'
+    }]
+  },
+  tooltip: {
+    valueSuffix: '辆' // 提示信息所带单位
+  },
+  legend: {
+    enabled: false //  禁用图例
+  },
+  credits: {
+    enabled: false // 禁用版权信息
+  },
+  series: [{
+    name: '过车数量',
+    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,
+      7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+  }]
+}
+
 export default {
   data() {
     return {
       value: 4.5,
       tableData: [],
-      sty: {
-        width: 1600,
-        height: 350
-      },
-      options: {
-        title: {
-          text: '按时间汇总',
-          x: -20 // center
-        },
-        chart: {
-          type: 'column'
-        },
-        xAxis: {
-          categories: ['00:00~01:00', '01:00~02:00', '02:00~03:00', '03:00~04:00', '04:00~05:00', '05:00~06:00',
-            '06:00~07:00', '07:00~08:00', '08:00~09:00', '09:00~10:00', '10:00~11:00',
-            '11:00~12:00', '12:00~13:00', '13:00~14:00', '14:00~15:00', '15:00~16:00',
-            '16:00~17:00', '17:00~18:00', '18:00~19:00', '19:00~20:00', '20:00~21:00',
-            '21:00~22:00', '22:00~23:00', '23:00~24:00'
-          ]
-        },
-        yAxis: {
-          title: {
-            text: '过车统计'
-          },
-          // 标示线
-          plotLines: [{
-            value: 0,
-            width: 1,
-            color: '#808080'
-          }]
-        },
-        tooltip: {
-          valueSuffix: '辆' // 提示信息所带单位
-        },
-        legend: {
-          enabled: false //  禁用图例
-        },
-        credits: {
-          enabled: false // 禁用版权信息
-        },
-        series: [{
-          name: '过车数量',
-          data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,
-            7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-        }]
-      }
+      styles: style,
+      options: option
     }
   },
   created() {

@@ -1,5 +1,5 @@
 <template>
-  <div class="highcharts-container" ></div>
+  <div :style="{width: styles.width, height: styles.height}"></div>
 </template>
 <script>
 import Highcharts from 'highcharts/highstock'
@@ -18,7 +18,16 @@ HeatMap(Highcharts)
 Exporting(Highcharts)
 TreeMap(Highcharts)
 export default {
-  props: ['defOptions', 'styles'],
+  props: {
+    defOptions: {
+      type: Object,
+      default: () => {}
+    },
+    styles: {
+      type: Object,
+      default: () => {}
+    }
+  },
   name: 'highcharts',
   data() {
     return {
@@ -36,16 +45,10 @@ export default {
   },
   methods: {
     initChart() {
-      // 根据传进来的style设置宽高
-      this.$el.style.width = (this.styles.width || 800) + 'px'
-      this.$el.style.height = (this.styles.height || 400) + 'px'
       this.chart = new Highcharts.Chart(this.$el, this.defOptions)
     }
   }
 }
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  .highcharts-container
-    width 800px
-    height 400px
 </style>
