@@ -1,6 +1,6 @@
 <template>
   <div class="head-locate">
-    <a href="">LOGO</a>
+    <a href="#">LOGO</a>
     <div class="head-navbar">
       <div class="head-menu"><i class="justify el-icon-s-home"></i><span>首页</span></div>
       <div class="head-menu"><i class="justify el-icon-s-opportunity"></i><span>反馈</span></div>
@@ -31,6 +31,8 @@ export default {
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .head-locate
+    position fixed
+    z-index 999
     display flex
     align-items center
     justify-content space-between
@@ -39,6 +41,16 @@ export default {
     height 65px
     background #fff
     box-shadow 0 1px 4px rgba(0,21,41,.08)
+    a
+      white-space nowrap
+      text-decoration none
+      text-overflow ellipsis
+      margin-left 265px
+      max-width 180px
+      overflow hidden
+      color #3704ffd4
+      font-weight 700
+      font-size 28px
     .head-navbar
       height 44px
       display flex

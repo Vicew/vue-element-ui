@@ -126,24 +126,147 @@
       </div>
     </div>
     <div class="container-block">
-      <div class="container-block-locate"></div>
+      <div class="container-block-locate">
+        <div class="content">
+          <h4>最近邀评数据</h4>
+            <el-table
+              :data="tableData"
+              style="width: 100%">
+              <el-table-column
+                label="被邀请人"
+                width="330">
+                <template slot-scope="scope">
+                  <i :class="scope.row.beInvitedIcon"></i>
+                  <span style="margin-left: 10px">{{ scope.row.beInvited }}</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                label="被邀请人邮件"
+                width="367">
+                <template slot-scope="scope">
+                  <span>{{ scope.row.email }}</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                label="邀请人"
+                width="294">
+                <template slot-scope="scope">
+                  <i :class="scope.row.inviterIcon"></i>
+                  <span>{{ scope.row.inviter }}</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                label="邀请时间"
+                width="294">
+                <template slot-scope="scope">
+                  <span>{{ scope.row.date }}</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                label="状态"
+                width="284">
+                <template slot-scope="scope">
+                  <el-button :type="scope.row.type">已发送</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+        </div>
+      </div>
+    </div>
+    <div class="chart-block">
+      <div class="chart-block-locate">
+        <div class="content">
+          <h4>图表数据</h4>
+          <highcharts :defOptions="options" :styles="styles"></highcharts>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+import Highcharts from 'base/highcharts/highcharts'
+
+const style = {
+  width: 1600,
+  height: 350
+}
+
+const option = {
+  title: {
+    text: '按时间汇总',
+    x: -20 // center
+  },
+  chart: {
+    type: 'column'
+  },
+  xAxis: {
+    categories: ['00:00~01:00', '01:00~02:00', '02:00~03:00', '03:00~04:00', '04:00~05:00', '05:00~06:00',
+      '06:00~07:00', '07:00~08:00', '08:00~09:00', '09:00~10:00', '10:00~11:00',
+      '11:00~12:00', '12:00~13:00', '13:00~14:00', '14:00~15:00', '15:00~16:00',
+      '16:00~17:00', '17:00~18:00', '18:00~19:00', '19:00~20:00', '20:00~21:00',
+      '21:00~22:00', '22:00~23:00', '23:00~24:00'
+    ]
+  },
+  yAxis: {
+    title: {
+      text: '过车统计'
+    },
+    // 标示线
+    plotLines: [{
+      value: 0,
+      width: 1,
+      color: '#808080'
+    }]
+  },
+  tooltip: {
+    valueSuffix: '辆' // 提示信息所带单位
+  },
+  legend: {
+    enabled: false //  禁用图例
+  },
+  credits: {
+    enabled: false // 禁用版权信息
+  },
+  series: [{
+    name: '过车数量',
+    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,
+      7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+  }]
+}
+
 export default {
   data() {
     return {
-      value: 4.5
+      value: 4.5,
+      tableData: [],
+      styles: style,
+      options: option
     }
+  },
+  created() {
+    this._getTableData()
+  },
+  methods: {
+    _getTableData() {
+      axios.post('https://www.easy-mock.com/mock/5d5e38b76d7b847d9d307392/example/upload').then((res) => {
+        this.tableData = res.data.data
+      })
+    }
+  },
+  components: {
+    Highcharts
   }
 }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .dash-board
+    background-color #eee
     width 100%
+    margin-top 65px
+    margin-left 240px
     .evaluation-grade
       width 100%
       height 285px
@@ -306,12 +429,53 @@ export default {
     .container-block
       width 100%
       display flex
-      height 130px
+      height 605px
       align-items center
       justify-content center
       .container-block-locate
         background-color white
         border-radius 6px
         width 97.3%
-        height 100px
+        height 575px
+        .content
+          padding 20px
+          margin-bottom 20px
+          h4
+            height 16px
+            line-height 16px
+            font-size 16px
+            color rgb(51, 51, 51)
+            font-weight bold
+            margin 0px 0px 20px
+            padding 0px
+        .content >>> .is-leaf
+          background-color #ebecf0
+        .content >>> .el-table::before
+          width 1569px
+        .content >>> .iconavatar1:before
+          font-size 30px
+        .content >>> .iconavatar2:before
+          font-size 30px
+    .chart-block
+      width 100%
+      display flex
+      height 486px
+      align-items center
+      justify-content center
+      .chart-block-locate
+        background-color white
+        border-radius 6px
+        width 97.3%
+        height 456px
+        .content
+          padding 20px
+          margin-bottom 20px
+          h4
+            height 16px
+            line-height 16px
+            font-size 16px
+            color rgb(51, 51, 51)
+            font-weight bold
+            margin 0px 0px 20px
+            padding 0px
 </style>
