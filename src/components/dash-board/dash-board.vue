@@ -177,7 +177,31 @@
       <div class="chart-block-locate">
         <div class="content">
           <h4>图表数据</h4>
-          <highcharts :defOptions="options" :styles="styles"></highcharts>
+          <div class="near">近一月</div>
+          <div class="detail">
+            <div class="detail-display">
+              <div class="count">135</div>
+              <div class="status">
+                <span class="line-one"></span>
+                <span>已完成</span>
+              </div>
+            </div>
+            <div class="detail-display">
+              <div class="count">242</div>
+              <div class="status">
+                <span class="line-two"></span>
+                <span>已邀请</span>
+              </div>
+            </div>
+            <div class="detail-display">
+              <div class="count">22</div>
+              <div class="status">
+                <span class="line-three"></span>
+                <span>已回绝</span>
+              </div>
+            </div>
+          </div>
+          <highcharts class="highcharts" :defOptions="options" :styles="styles"></highcharts>
         </div>
       </div>
     </div>
@@ -188,30 +212,25 @@
 import axios from 'axios'
 import Highcharts from 'base/highcharts/highcharts'
 
-const style = {
+const styles = {
   width: 1600,
   height: 350
 }
 
 const option = {
   title: {
-    text: '按时间汇总',
-    x: -20 // center
+    text: ''
   },
   chart: {
     type: 'column'
   },
   xAxis: {
-    categories: ['00:00~01:00', '01:00~02:00', '02:00~03:00', '03:00~04:00', '04:00~05:00', '05:00~06:00',
-      '06:00~07:00', '07:00~08:00', '08:00~09:00', '09:00~10:00', '10:00~11:00',
-      '11:00~12:00', '12:00~13:00', '13:00~14:00', '14:00~15:00', '15:00~16:00',
-      '16:00~17:00', '17:00~18:00', '18:00~19:00', '19:00~20:00', '20:00~21:00',
-      '21:00~22:00', '22:00~23:00', '23:00~24:00'
+    categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月'
     ]
   },
   yAxis: {
     title: {
-      text: '过车统计'
+      text: ''
     },
     // 标示线
     plotLines: [{
@@ -221,18 +240,28 @@ const option = {
     }]
   },
   tooltip: {
-    valueSuffix: '辆' // 提示信息所带单位
   },
   legend: {
-    enabled: false //  禁用图例
+    enabled: true //  禁用图例
   },
   credits: {
     enabled: false // 禁用版权信息
   },
+  exporting: {
+    enabled: false
+  },
   series: [{
-    name: '过车数量',
-    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,
-      7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+    name: '已完成',
+    color: '#7695fc',
+    data: [118, 128, 139, 181, 147, 120, 124, 135]
+  }, {
+    name: '已邀请',
+    color: '#ee8280',
+    data: [212, 223, 234, 299, 252, 235, 237, 242]
+  }, {
+    name: '已回绝',
+    color: '#71d2a9',
+    data: [12, 13, 24, 129, 122, 225, 117, 22]
   }]
 }
 
@@ -241,7 +270,7 @@ export default {
     return {
       value: 4.5,
       tableData: [],
-      styles: style,
+      styles: styles,
       options: option
     }
   },
@@ -459,17 +488,16 @@ export default {
     .chart-block
       width 100%
       display flex
-      height 486px
+      height 606px
       align-items center
       justify-content center
       .chart-block-locate
         background-color white
         border-radius 6px
         width 97.3%
-        height 456px
+        height 576px
         .content
-          padding 20px
-          margin-bottom 20px
+          padding 20px 20px 0 20px
           h4
             height 16px
             line-height 16px
@@ -478,4 +506,37 @@ export default {
             font-weight bold
             margin 0px 0px 20px
             padding 0px
+          .near
+            color #666
+            font-size 12px
+          .detail
+            display flex
+            margin-top 10px
+            .detail-display
+              margin-right 50px
+              .count
+                font-size 30px
+              .status
+                display flex
+                align-items center
+                .line-one
+                  background-color rgb(94, 131, 251)
+                  display inline-block
+                  width 15px
+                  height 3px
+                  margin-right 5px
+                .line-two
+                  background-color rgb(238, 112, 109)
+                  display inline-block
+                  width 15px
+                  height 3px
+                  margin-right 5px
+                .line-three
+                  background-color rgb(88, 202, 154)
+                  display inline-block
+                  width 15px
+                  height 3px
+                  margin-right 5px
+          .highcharts
+            margin-top 35px
 </style>
