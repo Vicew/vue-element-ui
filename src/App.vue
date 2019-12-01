@@ -1,10 +1,10 @@
 <template>
   <div>
-    <m-head></m-head>
+    <!-- <m-head></m-head>
     <div class="aside-content">
-      <m-aside></m-aside>
+      <m-aside></m-aside> -->
       <router-view></router-view>
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 
